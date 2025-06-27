@@ -4,7 +4,7 @@
 import { Builder, By, until } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome.js';
 
-const URL = 'http://localhost:5174/';
+const URL = 'http://localhost:5173/';
 
 async function runTests() {
   let driver = await new Builder()

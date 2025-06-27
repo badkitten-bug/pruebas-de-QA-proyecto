@@ -7,7 +7,7 @@ import { useAuthStore } from '../../store/authStore';
 import { PawPrint } from 'lucide-react';
 
 const loginSchema = z.object({
-  email: z.string().email(),
+  email: z.string().email({ message: 'Incluye un signo "@" en la dirección de correo electrónico.' }),
   password: z.string().min(6),
 });
 

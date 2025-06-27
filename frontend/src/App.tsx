@@ -23,9 +23,7 @@ export default function App() {
         <Route
           path="/dashboard/*"
           element={
-            <ProtectedRoute>
-              <DashboardLayout />
-            </ProtectedRoute>
+            <DashboardLayout />
           }
         >
           <Route path="animals" element={<AnimalsPage />} />
