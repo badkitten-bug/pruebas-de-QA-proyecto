@@ -7,8 +7,26 @@ import { useAuthStore } from '../../store/authStore';
 import { PawPrint } from 'lucide-react';
 
 const loginSchema = z.object({
-  email: z.string().email({ message: 'Incluye un signo "@" en la dirección de correo electrónico.' }),
-  password: z.string().min(6),
+  email: z
+  .string()
+  .min(1, { message: 'Campo obligatorio' })
+  .refine((val) => val.includes('@'), {
+    message: 'Incluye un signo "@" en la dirección de correo electrónico.',
+  })
+  .refine((val) => {
+    const parts = val.split('@');
+    return parts.length === 2 && parts[0].length > 0 && parts[1].length > 0;
+  }, {
+    message: 'Email inválido',
+  }),
+  password: z
+  .string()
+  .min(1, {message: 'Campo obligatorio'})
+  .min(6, { message: 'Contraseña demasiado corta (mínimo 6 caracteres).' })
+  .max(15, { message: 'Contraseña demasiado larga (máximo 10 caracteres).' })
+  .refine((val) => !/[",'<>,]/.test(val), {
+    message: 'Caracteres inválidos',
+  })
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -25,6 +43,8 @@ export function LoginForm() {
   // Recibe los datos del formulario (data), realiza el login y luego navega a la ruta del dashboard.
   const onSubmit = (data: LoginFormData) => {
     setError(null);
+
+
     const result = login(data.email, data.password);
     if (result.success) {
       navigate('/dashboard');
@@ -54,6 +74,7 @@ export function LoginForm() {
               <div className="mt-1">
                 <input
                   {...register('email')}
+                  id="email"
                   type="email"
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
@@ -70,6 +91,7 @@ export function LoginForm() {
               <div className="mt-1">
                 <input
                   {...register('password')}
+                  id="password"
                   type="password"
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />

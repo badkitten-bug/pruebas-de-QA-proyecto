@@ -64,33 +64,33 @@ export function RegisterForm() {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Nombre</label>
-              <input {...register('name')} className="block w-full px-3 py-2 border rounded-md" />
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre</label>
+              <input {...register('name')} id="name" className="block w-full px-3 py-2 border rounded-md" />
               {errors.name && <p className="text-sm text-red-600">{errors.name.message}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Apellido</label>
-              <input {...register('apellido')} className="block w-full px-3 py-2 border rounded-md" />
+              <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">Apellido</label>
+              <input {...register('apellido')} id="apellido" className="block w-full px-3 py-2 border rounded-md" />
               {errors.apellido && <p className="text-sm text-red-600">{errors.apellido.message}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Email</label>
-              <input {...register('email')} type="email" className="block w-full px-3 py-2 border rounded-md" />
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+              <input {...register('email')} id="email" type="email" className="block w-full px-3 py-2 border rounded-md" />
               {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Repetir Email</label>
-              <input {...register('retypeEmail')} type="email" className="block w-full px-3 py-2 border rounded-md" />
+              <label htmlFor="retypeEmail" className="block text-sm font-medium text-gray-700">Repetir Email</label>
+              <input {...register('retypeEmail')} id="retypeEmail" type="email" className="block w-full px-3 py-2 border rounded-md" />
               {errors.retypeEmail && <p className="text-sm text-red-600">{errors.retypeEmail.message}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Contraseña</label>
-              <input {...register('password')} type="password" className="block w-full px-3 py-2 border rounded-md" />
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Contraseña</label>
+              <input {...register('password')} id="password" type="password" className="block w-full px-3 py-2 border rounded-md" />
               {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Repetir Contraseña</label>
-              <input {...register('rePassword')} type="password" className="block w-full px-3 py-2 border rounded-md" />
+              <label htmlFor="rePassword" className="block text-sm font-medium text-gray-700">Repetir Contraseña</label>
+              <input {...register('rePassword')} id="rePassword" type="password" className="block w-full px-3 py-2 border rounded-md" />
               {errors.rePassword && <p className="text-sm text-red-600">{errors.rePassword.message}</p>}
             </div>
             {error && <div className="text-red-600 text-sm">{error}</div>}
